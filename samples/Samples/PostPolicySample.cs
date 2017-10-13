@@ -25,9 +25,8 @@ namespace Aliyun.OSS.Samples
 
         private static string ComputeSignature(string key, string data)
         {
-            using (var algorithm = KeyedHashAlgorithm.Create("HmacSHA1".ToUpperInvariant()))
+            using (var algorithm = new HMACSHA1(Encoding.UTF8.GetBytes(key.ToCharArray())))
             {
-                algorithm.Key = Encoding.UTF8.GetBytes(key.ToCharArray());
                 return Convert.ToBase64String(
                     algorithm.ComputeHash(Encoding.UTF8.GetBytes(data.ToCharArray())));
             }

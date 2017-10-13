@@ -386,6 +386,18 @@ namespace Aliyun.OSS.Common.Communication
                     null,
                     new Type[] { typeof(string), typeof(string) },
                     null);
+                
+                // check for net core
+                internalMethodName = "AddWithoutValidate";
+                if(mi == null)
+                {
+                    mi = typeof(WebHeaderCollection).GetMethod(
+                    internalMethodName,
+                    BindingFlags.NonPublic | BindingFlags.Instance,
+                    null,
+                    new Type[] { typeof(string), typeof(string) },
+                    null);
+                }
                 _addInternalMethod = mi;
             }
 
